@@ -21,14 +21,19 @@
 		    <groupId>com.googlecode.xmemcached</groupId>
     		<artifactId>xmemcached</artifactId>
 			<version>1.4.1</version>
-	    </dependency>
-	    <dependency>
-			<groupId>storm</groupId>
-			<artifactId>storm</artifactId>
-			<version>0.8.2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.4</version>
@@ -38,11 +43,17 @@
 			<groupId>com.taobao.metamorphosis</groupId>
 			<artifactId>metamorphosis-client</artifactId>
 			<version>1.4.6.2</version>
-		</dependency>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 	    <dependency>
 			<groupId>com.taobao.metamorphosis</groupId>
 			<artifactId>metamorphosis-storm-spout</artifactId>
-			<version>1.4.6.2</version>
+			<version>1.4.6.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.taobao.metamorphosis</groupId>

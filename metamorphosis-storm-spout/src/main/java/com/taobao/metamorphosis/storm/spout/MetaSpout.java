@@ -17,6 +17,7 @@
  */
 package com.taobao.metamorphosis.storm.spout;
 
+import java.nio.ByteBuffer;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
@@ -25,11 +26,11 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import backtype.storm.spout.Scheme;
-import backtype.storm.spout.SpoutOutputCollector;
-import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.OutputFieldsDeclarer;
-import backtype.storm.topology.base.BaseRichSpout;
+import org.apache.storm.spout.Scheme;
+import org.apache.storm.spout.SpoutOutputCollector;
+import org.apache.storm.task.TopologyContext;
+import org.apache.storm.topology.OutputFieldsDeclarer;
+import org.apache.storm.topology.base.BaseRichSpout;
 
 import com.taobao.gecko.core.util.LinkedTransferQueue;
 import com.taobao.metamorphosis.Message;
@@ -172,7 +173,7 @@ public class MetaSpout extends BaseRichSpout {
                     return;
                 }
                 final Message message = wrapper.message;
-                this.collector.emit(this.scheme.deserialize(message.getData()), message.getId());
+                this.collector.emit(this.scheme.deserialize(ByteBuffer.wrap(message.getData())), message.getId());
             }
             catch (final InterruptedException e) {
                 // interrupted while waiting for message, big deal

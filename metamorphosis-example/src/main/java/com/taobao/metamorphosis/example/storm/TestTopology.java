@@ -4,14 +4,14 @@ import static com.taobao.metamorphosis.example.Help.initMetaConfig;
 
 import java.util.Map;
 
-import backtype.storm.Config;
-import backtype.storm.LocalCluster;
-import backtype.storm.task.OutputCollector;
-import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.OutputFieldsDeclarer;
-import backtype.storm.topology.TopologyBuilder;
-import backtype.storm.topology.base.BaseRichBolt;
-import backtype.storm.tuple.Tuple;
+import org.apache.storm.Config;
+import org.apache.storm.LocalCluster;
+import org.apache.storm.task.OutputCollector;
+import org.apache.storm.task.TopologyContext;
+import org.apache.storm.topology.OutputFieldsDeclarer;
+import org.apache.storm.topology.TopologyBuilder;
+import org.apache.storm.topology.base.BaseRichBolt;
+import org.apache.storm.tuple.Tuple;
 
 import com.taobao.metamorphosis.client.consumer.ConsumerConfig;
 import com.taobao.metamorphosis.storm.scheme.StringScheme;
@@ -25,13 +25,11 @@ public class TestTopology {
         int i = 0;
 
 
-        @Override
         public void prepare(Map map, TopologyContext tc, OutputCollector collector) {
             this._collector = collector;
         }
 
 
-        @Override
         public void execute(Tuple tuple) {
             this.i++;
             if (this.i % 2 == 0) {
@@ -43,7 +41,6 @@ public class TestTopology {
         }
 
 
-        @Override
         public void declareOutputFields(OutputFieldsDeclarer declarer) {
         }
     }
